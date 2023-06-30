@@ -2,16 +2,18 @@ import numpy as np
 from fractions import Fraction
 
 class Vector:
-    __slots__ = ['data','dim','norm']
+    __slots__ = ['data','dim','norm',"defined"]
     def __init__(self,array:np.array):
         '''
         n维的向量
         array:用于初始化向量的数组
         '''
+        super().__setattr__("defined",False)
         array = np.array(array)
         if array.ndim != 1:
             raise ValueError("需要使用一维数组")
         self.data = array
+        self.defined = True
 
     def __eq__(self, other) -> bool:
         if type(other) != Vector:
@@ -66,6 +68,8 @@ class Vector:
     __repr__ = __str__
 
     def __setattr__(self, __name: str, __value) -> None:
+        if self.defined == True:
+            raise TypeError('Vector类型不可修改')
         super().__setattr__(__name,__value)
         if __name == 'data':
             self.dim = self.data.shape[0]
