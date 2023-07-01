@@ -22,7 +22,7 @@ class Vector:
         if self.data.shape != other.data.shape:
             return False
             #维数不相等返回False
-        return (self.data == other.dada).all()
+        return (self.data == other.data).all()
         #每一项数字都相等
 
     def __ne__(self,other):
