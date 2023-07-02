@@ -43,9 +43,23 @@ def d3()->list[Cube]:
             j += 1
         else:
             i += 1
-    print(len(cubes))
+    
     for each in cubes:
-        print(each)
+        match list(each.drct.data):
+            case [0,0,1]:
+                each.color = 0
+            case [0,0,-1]:
+                each.color = 1
+            case [0,1,0]:
+                each.color = 2
+            case [0,-1,0]:
+                each.color = 3
+            case [1,0,0]:
+                each.color = 4
+            case [-1,0,0]:
+                each.color = 5
+    cubes = sorted(cubes,key=lambda x:x.color)
+    return cubes
 
 def d4()->list[Cube]:
     axis = [list() for i in range(4)]
@@ -88,9 +102,30 @@ def d4()->list[Cube]:
             j += 1
         else:
             i += 1
-    print(len(cubes))
+
     for each in cubes:
-        print(each)
+        match list(each.drct.data):
+            case [0,0,0,1]:
+                each.color = 0
+            case [0,0,0,-1]:
+                each.color = 1
+            case [0,0,1,0]:
+                each.color = 2
+            case [0,0,-1,0]:
+                each.color = 3
+            case [0,1,0,0]:
+                each.color = 4
+            case [0,-1,0,0]:
+                each.color = 5
+            case [1,0,0,0]:
+                each.color = 6
+            case [-1,0,0,0]:
+                each.color = 7
+    cubes = sorted(cubes,key=lambda x:x.color)
+    return cubes
 
 if __name__ == '__main__':
-    d4()
+    cubes = d4()
+    file = open('cubes.pkl','wb')
+    pickle.dump(cubes,file,1)
+    file.close()

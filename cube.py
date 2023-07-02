@@ -16,6 +16,9 @@ class Cube:
         + f' color:{self.color}'
     __repr__ = __str__
 
+    def __getstate__(self) -> object:
+        pass
+
 if __name__ == '__main__':
     c = Cube(Vector([1,1,-1]),Vector([0,0,1]))
     print(c)
