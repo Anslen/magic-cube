@@ -67,6 +67,9 @@ class Vector:
         return f'Vector({self.data.__repr__()[7:-2]})'
     __repr__ = __str__
 
+    def __hash__(self):
+        return hash(tuple(self.data))
+
     def __setattr__(self, __name: str, __value) -> None:
         if self.defined == True:
             raise TypeError('Vector类型不可修改')
